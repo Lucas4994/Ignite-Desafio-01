@@ -13,10 +13,15 @@
     --purple-dark: #5e60ce;
 
     --blue: #4ea8de;
-    --blue-drark: #1e6f9f;
+    --blue-dark: #1e6f9f;
 
     --danger: #e25858
 
+}
+
+:focus {
+    outline: transparent;
+    box-shadow: 0 0 0 2px var(--blue-drark);
 }
 
 * {
