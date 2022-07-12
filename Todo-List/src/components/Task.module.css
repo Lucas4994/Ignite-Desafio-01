@@ -25,6 +25,7 @@
     border: 2.2px solid var(--blue);
     display: inline-block;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .taskStatus input:checked + label::before{
