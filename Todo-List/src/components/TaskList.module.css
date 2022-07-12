@@ -114,3 +114,8 @@
     border-top-left-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
 }
+
+.newTaskForm button[type=submit]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}

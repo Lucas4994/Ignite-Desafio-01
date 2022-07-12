@@ -1,4 +1,5 @@
 import { PlusCircle } from "phosphor-react";
+import { ChangeEvent, FormEvent, InvalidEvent, ReactNode, useEffect, useState } from "react";
 import { EmptyTaskList } from "./EmptyTaskList";
 import { Task } from "./Task";
 
@@ -6,12 +7,74 @@ import styles from "./TaskList.module.css";
 
 
 export function TaskList() {
+
+    const [newTaskDescription, setNewTaskDescription] = useState('')
+    const [tasks, setTasks] = useState([{
+        id: "Task1",
+        description: "Atualizar servidor",
+        isCompleted: true
+    },
+    {
+        id: "Task2",
+        description: "Alinhar prioridades com fulana",
+        isCompleted: false
+    }])
+    const [completedTaskCount, setCompletedTaskCount] = useState(tasks.filter(task => task.isCompleted).length)
+
+    function handleCreateNewTask(event: FormEvent) {
+        event.preventDefault()
+        setTasks(state => [...state, {
+            id: "Task" + state.length + 1,
+            description: newTaskDescription,
+            isCompleted: false
+        }])
+        setNewTaskDescription('')
+
+    }
+
+    function handleNewTaskDescriptionInvalid(event: InvalidEvent<HTMLInputElement>) {
+        event.target.setCustomValidity('Este campo é obrigatório!')
+    }
+
+    function handleNewTaskDescriptionChange(event: ChangeEvent<HTMLInputElement>) {
+        event.target.setCustomValidity('')
+        setNewTaskDescription(event.target.value);
+    }
+
+    function deleteTask(id: string) {
+        const tasksWithoutDeletedOne = tasks.filter(task => {
+            return task.id !== id
+        })
+
+        setTasks(tasksWithoutDeletedOne)
+
+    }
+
+    function toggleCompleteTask(id: string) {
+        tasks.map(task => {
+            if (task.id === id) {
+                task.isCompleted = !task.isCompleted
+
+                return task
+            }
+        })
+
+        setTasks(tasks)
+        setCompletedTaskCount(tasks.filter(task => task.isCompleted).length)
+    }
+
     return (
         <div className={styles.wrapper}>
             <header className={styles.header}>
-                <form className={styles.newTaskForm}>
-                    <input type='text' placeholder="Adicione uma nova tarefa" />
-                    <button type="submit">
+                <form className={styles.newTaskForm} onSubmit={handleCreateNewTask}>
+                    <input
+                        type='text'
+                        placeholder="Adicione uma nova tarefa"
+                        value={newTaskDescription}
+                        onChange={handleNewTaskDescriptionChange}
+                        onInvalid={handleNewTaskDescriptionInvalid}
+                        required />
+                    <button type="submit" >
                         Criar
                         <PlusCircle size={16} />
                     </button>
@@ -22,18 +85,32 @@ export function TaskList() {
                     <div className={styles.createdTasksInfo}>
                         <p>Tarefas criadas</p>
                         <div>
-                            <span>5</span>
+                            <span>{tasks.length}</span>
                         </div>
                     </div>
                     <div className={styles.completedTasksInfo}>
                         <p>Tarefas concluidas</p>
                         <div>
-                            <span>2 de 5</span>
+                            <span>{completedTaskCount} de {tasks.length}</span>
                         </div>
                     </div>
                 </div>
-                <div className={styles.taskListEmptyContent}>
-                    <EmptyTaskList />
+                <div className={tasks.length === 0 ? styles.taskListEmptyContent : styles.taskListContent}>
+                    {
+                        tasks.length === 0
+                            ? <EmptyTaskList />
+                            : tasks.map(task => {
+
+                                return <Task
+                                    key={task.id}
+                                    id={task.id}
+                                    description={task.description}
+                                    isCompleted={task.isCompleted}
+                                    onDeleteTask={deleteTask}
+                                    onCompleteTask={toggleCompleteTask}
+                                />
+                            })
+                    }
                 </div>
 
             </article>

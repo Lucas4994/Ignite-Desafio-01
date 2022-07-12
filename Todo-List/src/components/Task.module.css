@@ -1,7 +1,7 @@
 .task {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background: var(--gray-500);
     border-radius: 0.5rem;
     padding: 1rem;
@@ -9,6 +9,7 @@
     margin-bottom: 1.33rem;
     gap: 1.33rem;
     line-height: 1.4;
+    width: 46rem;
 
 }
 
