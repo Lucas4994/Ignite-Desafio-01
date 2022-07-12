@@ -24,7 +24,7 @@ export function Task({id, description, isCompleted, onDeleteTask, onCompleteTask
     }
 
     return (
-        <div className={styles.task}>
+        <div className={isCompleted ? styles.taskCompleted : styles.task}>
             <div className={styles.taskStatus}>
                 <input type="checkbox" id={id} defaultChecked={isCompleted} onChange={handleToggleCompleteTask}/>
                 <label htmlFor={id?.toString()} />

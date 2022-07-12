@@ -21,6 +21,8 @@ export function TaskList() {
     }])
     const [completedTaskCount, setCompletedTaskCount] = useState(tasks.filter(task => task.isCompleted).length)
 
+    const isNewTaskDescriptionEmpty = newTaskDescription.length === 0
+
     function handleCreateNewTask(event: FormEvent) {
         event.preventDefault()
         setTasks(state => [...state, {
@@ -73,8 +75,9 @@ export function TaskList() {
                         value={newTaskDescription}
                         onChange={handleNewTaskDescriptionChange}
                         onInvalid={handleNewTaskDescriptionInvalid}
-                        required />
-                    <button type="submit" >
+                        required
+                        />
+                    <button type="submit" disabled={isNewTaskDescriptionEmpty} >
                         Criar
                         <PlusCircle size={16} />
                     </button>
