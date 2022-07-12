@@ -21,6 +21,7 @@ export function TaskList() {
     }])
     const [completedTaskCount, setCompletedTaskCount] = useState(tasks.filter(task => task.isCompleted).length)
 
+
     const isNewTaskDescriptionEmpty = newTaskDescription.length === 0
 
     function handleCreateNewTask(event: FormEvent) {
@@ -49,6 +50,7 @@ export function TaskList() {
         })
 
         setTasks(tasksWithoutDeletedOne)
+        setCompletedTaskCount(tasksWithoutDeletedOne.filter(task => task.isCompleted).length)
 
     }
 
