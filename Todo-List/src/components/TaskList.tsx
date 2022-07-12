@@ -18,8 +18,18 @@ export function TaskList() {
             </header>
             <article className={styles.taskList}>
                 <div className={styles.taskListHeader}>
-                    <p>Tarefas criadas <span>5</span></p>
-                    <p>Tarefas concluidas <span>2 de 5</span></p>
+                    <div className={styles.createdTasksInfo}>
+                        <p>Tarefas criadas</p>
+                        <div>
+                            <span>5</span>
+                        </div>
+                    </div>
+                    <div className={styles.completedTasksInfo}>
+                        <p>Tarefas concluidas</p>
+                        <div>
+                            <span>2 de 5</span>
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.taskListContent}>
                     <Task />

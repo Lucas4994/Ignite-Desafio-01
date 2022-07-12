@@ -57,6 +57,43 @@
 
 }
 
+.taskListHeader span {
+    color: var(--gray-200);
+    font-weight: 700;
+    padding: 2px, 8px, 2px, 8px;
+}
+
+.createdTasksInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    font-weight: 700;
+    gap: 0.5rem;
+}
+
+.createdTasksInfo span {
+    background: var(--gray-400);
+    border-radius: 1rem;
+    padding: 0.125rem 0.5rem;
+}
+
+.completedTasksInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--purple);
+    font-weight: 700;
+    gap: 0.5rem;
+
+}
+
+.completedTasksInfo span {
+    background: var(--gray-400);
+    border-radius: 1rem;
+    padding: 0.125rem 0.5rem;
+}
+
 .taskList {
     box-sizing: border-box;
     display: flex;
