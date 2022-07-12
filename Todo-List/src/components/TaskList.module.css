@@ -103,6 +103,14 @@
     margin: 4rem 0;
 }
 
-.taskListContent {
+.taskListContent{
     max-width: 46rem;
+}
+
+.taskListEmptyContent {
+    width: 46rem;
+    padding: 2rem;
+    border-top: 2px solid var(--gray-500);
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
 }

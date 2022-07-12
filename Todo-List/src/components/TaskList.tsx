@@ -1,4 +1,5 @@
 import { PlusCircle } from "phosphor-react";
+import { EmptyTaskList } from "./EmptyTaskList";
 import { Task } from "./Task";
 
 import styles from "./TaskList.module.css";
@@ -31,10 +32,8 @@ export function TaskList() {
                         </div>
                     </div>
                 </div>
-                <div className={styles.taskListContent}>
-                    <Task />
-                    <Task />
-                    <Task />
+                <div className={styles.taskListEmptyContent}>
+                    <EmptyTaskList />
                 </div>
 
             </article>
