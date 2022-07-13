@@ -3,6 +3,8 @@ import { ChangeEvent, FormEvent, InvalidEvent, ReactNode, useEffect, useState } 
 import { EmptyTaskList } from "./EmptyTaskList";
 import { Task } from "./Task";
 
+import { v4 as uuidv4 } from 'uuid';
+
 import styles from "./TaskList.module.css";
 
 
@@ -10,12 +12,12 @@ export function TaskList() {
 
     const [newTaskDescription, setNewTaskDescription] = useState('')
     const [tasks, setTasks] = useState([{
-        id: "Task1",
+        id: uuidv4(),
         description: "Atualizar servidor",
         isCompleted: true
     },
     {
-        id: "Task2",
+        id: uuidv4(),
         description: "Alinhar prioridades com fulana",
         isCompleted: false
     }])
@@ -27,7 +29,7 @@ export function TaskList() {
     function handleCreateNewTask(event: FormEvent) {
         event.preventDefault()
         setTasks(state => [...state, {
-            id: "Task" + state.length + 1,
+            id: uuidv4(),
             description: newTaskDescription,
             isCompleted: false
         }])
