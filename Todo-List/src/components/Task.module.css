@@ -67,3 +67,13 @@
     color: var(--gray-300);
     border: none;
 }
+
+@media (max-width: 768px){
+    .task{
+       max-width: 25rem;
+    }
+
+    .taskCompleted{
+        max-width: 25rem;
+    }
+}
